@@ -42,5 +42,27 @@
       <artifactId>jsoup</artifactId>
       <version>1.12.1</version>
     </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <!--中文字体支持start-->
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>font-asian</artifactId>
+      <version>7.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.7.6</version>
+    </dependency>
   </dependencies>
 </project>

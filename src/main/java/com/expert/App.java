@@ -18,6 +18,7 @@ public class App
     {
         //需要爬取的信息源网页
         String url = "https://www.eastmoney.com/";
+        //网页Html
         String pageHtml = "NG";
         WebAccessible webAccessible = new HttpClientUtil();
         try {
