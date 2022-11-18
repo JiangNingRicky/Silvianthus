@@ -16,6 +16,7 @@ public class FileUtils {
 
     private static AtomicLong totalLetter = new AtomicLong();
     private static AtomicLong totalFile = new AtomicLong();
+    private static AtomicLong totalEnFile = new AtomicLong();
     private static AtomicLong totalFileRead = new AtomicLong();
 
     private static ThreadPoolExecutor threadPoolExecutor =
@@ -27,6 +28,10 @@ public class FileUtils {
         Long startTime = System.currentTimeMillis();
         //先统计一遍文件总数，用于监控进度
         letterCountDir("/Users/valtechwh/Documents/N132","pdf",true);
+        if(totalFile.intValue() != totalEnFile.intValue()){
+            System.out.println("--------------------------【Error】There are ["+totalFile+"] files in chinese and ["+totalEnFile+"] files in english" );
+            return;
+        }
         System.out.println("--------------------------【START】There are ["+totalFile+"] files to be read");
         totalFileCountdownLatch = new CountDownLatch(totalFile.intValue());
         letterCountDir("/Users/valtechwh/Documents/N132","pdf",false);
@@ -43,15 +48,21 @@ public class FileUtils {
         if(!file.isDirectory()){return;}
         if(file.listFiles()!=null){
             for(File file1:file.listFiles()){
-                if(file.getName().equals("zh") && file1.isFile()
+                if(file1.isFile()
                         && getFileFormat(file1.getAbsolutePath()).equals(format)){
                     if(justCountFile){
-                        totalFile.incrementAndGet();
+                        if(file.getName().equals("zh")){
+                            totalFile.incrementAndGet();
+                        }else if(file.getName().equals("en")){
+                            totalEnFile.incrementAndGet();
+                        }
                     }else{
-                        threadPoolExecutor.execute(()->{
-                            letterCount(file1);
-                            totalFileCountdownLatch.countDown();
-                        });
+                        if(file.getName().equals("zh")){
+                            threadPoolExecutor.execute(()->{
+                                letterCount(file1);
+                                totalFileCountdownLatch.countDown();
+                            });
+                        }
                     }
                 }else if(file1.isDirectory()){
                     letterCountDir(file1.getAbsolutePath(),format,justCountFile);
