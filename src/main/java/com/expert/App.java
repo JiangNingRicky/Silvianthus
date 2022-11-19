@@ -1,7 +1,6 @@
 package com.expert;
 
 import com.expert.utils.HttpClientUtil;
-import com.expert.utils.WebAccessible;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,10 +19,9 @@ public class App
         String url = "https://www.eastmoney.com/";
         //网页Html
         String pageHtml = "NG";
-        WebAccessible webAccessible = new HttpClientUtil();
         try {
             //请求信息源网页
-            pageHtml = webAccessible.requestPage(url);
+            pageHtml = HttpClientUtil.requestPage(url);
         } catch (IOException e) {
             System.out.println( "Request for url ["+url+"] failed."+e.getMessage());
         }
@@ -36,5 +34,9 @@ public class App
         Element diffElement = pageDocument.selectFirst("#hq-news-main > div:nth-child(2) > div.hq-news-con-b.first > div.hq-news-data > div:nth-child(4) > span");
         //打印对应元素信息
         System.out.println(categoryElement.text()+" "+valueElement.text()+" "+rateElement.text()+" "+diffElement.text());
+
+
+        Element szElement = pageDocument.selectFirst("#hq-news-main > div:nth-child(2) > div:nth-child(2) > div.hq-news-data > div.hq-news-value.item_nowPrice > span");
+        System.out.println(szElement.text());
     }
 }

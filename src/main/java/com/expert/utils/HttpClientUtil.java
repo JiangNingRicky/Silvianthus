@@ -28,7 +28,7 @@ import java.util.Map;
 
 
 @SuppressWarnings("all")
-public class HttpClientUtil implements WebAccessible {
+public class HttpClientUtil{
     private static CloseableHttpClient httpClient = null;
 
 
@@ -61,6 +61,7 @@ public class HttpClientUtil implements WebAccessible {
                 }
                 uriBuilder.setParameters(list);
             }
+            System.out.println("-----------------------"+uriBuilder);
             HttpGet httpGet = new HttpGet(uriBuilder.build());
             if (headers != null) {
                 headers.forEach((k, v) -> httpGet.addHeader(k, v));
@@ -131,8 +132,7 @@ public class HttpClientUtil implements WebAccessible {
         return "";
     }
 
-    @Override
-    public void downloadFile(String url, File nativeFile) throws IOException {
+    public static void downloadFile(String url, File nativeFile) throws IOException {
         CloseableHttpResponse closeableHttpResponse = getResponse(url, null, null);
         try (InputStream is = closeableHttpResponse.getEntity().getContent();
              OutputStream os = new FileOutputStream(nativeFile)) {
@@ -140,13 +140,11 @@ public class HttpClientUtil implements WebAccessible {
         }
     }
 
-    @Override
-    public String requestPage(String url) throws IOException {
+    public static String requestPage(String url) throws IOException {
         return doHttpGet(url, new HashMap<String, String>(), null);
     }
 
-    @Override
-    public String requestPage(String url, Map<String, String> header) throws URISyntaxException, IOException {
+    public static String requestPage(String url, Map<String, String> header) throws URISyntaxException, IOException {
         return doHttpGet(url, new HashMap<String, String>(), header);
     }
 }
