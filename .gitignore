@@ -38,3 +38,6 @@ build/
 .DS_Store
 /src/test/
 /.idea/
+.mvn
+mvnw
+mvnw.cmd
