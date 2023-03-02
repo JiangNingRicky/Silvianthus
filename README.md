@@ -1,18 +1,15 @@
 # 
 
-**About arc42**
-
-arc42, the template for documentation of software and system
-architecture.
-
-Template Version 8.2 EN. (based upon AsciiDoc version), January 2023
-
-Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
-contributors. See <https://arc42.org>.
-
 # Introduction and Goals
 
 ## Requirements Overview
+* Fetch data from given website/API/file
+* Configure the page analysis
+* Sign up & Sign in & Forget Password & Email Verification
+* Data Visualization
+* Data Report
+* Data storage
+* ETL
 
 ## Quality Goals
 
