@@ -12,13 +12,16 @@
 * ETL
 
 ## Quality Goals
+* All the requirement should be fixed
+* Notification is required when critical error happens
+* For data crawler, it should be auto scale-out
 
 ## Stakeholders
 
-| Role/Name   | Contact        | Expectations       |
-|-------------|----------------|--------------------|
-| *\<Role-1>* | *\<Contact-1>* | *\<Expectation-1>* |
-| *\<Role-2>* | *\<Contact-2>* | *\<Expectation-2>* |
+| Role/Name        | Contact        | Expectations       |
+|-------------     |----------------|--------------------|
+| *Data User*      | *Ricky Jiang*  | *Data can be retrieve,analysis and visible.The data source should be allowed to be configured.* |
+| *Financial User* | *Ricky Jiang*  | *Monthly expense report can be retrieve from WeChat/AliPay and can be adjustment. Cost can be categorise and generate reports.* |
 
 # Architecture Constraints
 
