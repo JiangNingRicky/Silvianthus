@@ -23,7 +23,7 @@ jobs:
       
       - name: Release Note
         run: |
-          echo "${{ RELEASE_VERSION }}" > release-note.md
+          echo "${{ vars.RELEASE_VERSION }}" > release-note.md
 
       - name: Create Release
         id: create_release
