@@ -31,8 +31,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ RELEASE_VERSION }}
-          release_name: "Release ${{ RELEASE_VERSION }}"
+          tag_name: ${{ vars.RELEASE_VERSION }}
+          release_name: "Release ${{ vars.RELEASE_VERSION }}"
           body: |
             This is the release tag description.
           draft: false
@@ -42,5 +42,5 @@ jobs:
         run: |
           git config --global user.email "team-odm@valtech-mobility.com"
           git config --global user.name "Team ODM"
-          git commit -a -m "Update the release note for $release_version"
+          git commit -a -m "Update the release note for ${{ vars.RELEASE_VERSION }}"
           git push
