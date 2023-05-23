@@ -16,7 +16,7 @@ jobs:
       - name: Get Release Version
         id: get_release_version
         run: |
-          release_version="v1.0.12"
+          release_version="v1.0.13"
           echo "::set-output name=my_output::$release_version"
           
       
@@ -30,8 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $release_version
-          release_name: "Release $release_version"
+          tag_name: ${{ steps.get_release_version.my_output }}
+          release_name: "Release ${{ steps.get_release_version.my_output }}"
           body: |
             This is the release tag description.
           draft: false
