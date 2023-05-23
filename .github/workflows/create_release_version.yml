@@ -12,10 +12,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Get Release Version
+        id: get_release_version
+        run: |
+          release_version="v1.0.11"
+          
       
       - name: Release Note
         run: |
-          release_version="v1.0.11"
           echo "$release_version" > release-note.md
 
       - name: Create Release
