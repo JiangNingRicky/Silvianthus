@@ -1,9 +1,19 @@
 name: Create Release Version
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "int or prod"
+        required: true
+        default: "int"
+      based_on_version:
+        description: "tag"
+        required: true
+        default: "default"
+      release_type:
+        description: "major, minor or patch"
+        required: false
 
 jobs:
   create_release_version:
