@@ -78,7 +78,7 @@ if __name__ == "__main__":
     based_on_version = args.based_on_version
     release_type = args.release_type
 
-    if stage == "dev":
+    if stage == "int":
         if based_on_version == "default":
             latest_tag = get_latest_tag()
             print(f"{create_new_tag(latest_tag, based_on_version, release_type)}")
