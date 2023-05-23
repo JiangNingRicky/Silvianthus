@@ -17,13 +17,11 @@ jobs:
         id: get_release_version
         run: |
           release_version="v1.0.13"
-        env:
-          RELEASE_VERSION: $release_version
-          
+          echo "release_version=$release_version" >> $GITHUB_OUTPUT          
       
       - name: Release Note
         run: |
-          echo "${{ vars.RELEASE_VERSION }}" > release-note.md
+          echo "${{ steps.get_release_version.outputs.release_version }}" > release-note.md
 
       - name: Create Release
         id: create_release
@@ -31,8 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ vars.RELEASE_VERSION }}
-          release_name: "Release ${{ vars.RELEASE_VERSION }}"
+          tag_name: ${{ steps.get_release_version.outputs.release_version }}
+          release_name: "Release ${{ steps.get_release_version.outputs.release_version }}"
           body: |
             This is the release tag description.
           draft: false
@@ -42,5 +40,5 @@ jobs:
         run: |
           git config --global user.email "team-odm@valtech-mobility.com"
           git config --global user.name "Team ODM"
-          git commit -a -m "Update the release note for ${{ vars.RELEASE_VERSION }}"
+          git commit -a -m "Update the release note for ${{ steps.get_release_version.outputs.release_version }}"
           git push
