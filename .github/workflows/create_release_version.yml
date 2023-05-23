@@ -17,12 +17,13 @@ jobs:
         id: get_release_version
         run: |
           release_version="v1.0.13"
-          echo "my_output=$release_version" >> $GITHUB_OUTPUT
+        env:
+          RELEASE_VERSION: $release_version
           
       
       - name: Release Note
         run: |
-          echo "${{ steps.get_release_version.my_output }}" > release-note.md
+          echo "${{ RELEASE_VERSION }}" > release-note.md
 
       - name: Create Release
         id: create_release
@@ -30,8 +31,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_release_version.my_output }}
-          release_name: "Release ${{ steps.get_release_version.my_output }}"
+          tag_name: ${{ RELEASE_VERSION }}
+          release_name: "Release ${{ RELEASE_VERSION }}"
           body: |
             This is the release tag description.
           draft: false
