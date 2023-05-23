@@ -21,12 +21,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  
         
       - name: Get Release Version
         id: get_release_version
         run: |
-          release_version="v1.0.13"
+          release_version=$(python ./increment_new_version.py \
+                                --stage ${{ inputs.stage }} \
+                                --based_on_version ${{ inputs.version }} \
+                                --release_type ${{ inputs.releaseType }})
           echo "release_version=$release_version" >> $GITHUB_OUTPUT          
       
       - name: Release Note
