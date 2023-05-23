@@ -15,7 +15,7 @@ jobs:
       
       - name: Release Note
         run: |
-          echo v1.0.1 > release-note.md
+          echo "v1.0.2" > release-note.md
 
       - name: Create Release
         id: create_release
@@ -23,8 +23,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.1
-          release_name: Release v1.0.1
+          tag_name: v1.0.2
+          release_name: Release v1.0.2
           body: |
             This is the release tag description.
           draft: false
