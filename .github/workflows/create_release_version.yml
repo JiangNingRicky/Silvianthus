@@ -17,7 +17,7 @@ jobs:
         id: get_release_version
         run: |
           release_version="v1.0.13"
-          echo "::set-output name=my_output::$release_version"
+          echo "{my_output}={$release_version}" >> $GITHUB_OUTPUT
           
       
       - name: Release Note
