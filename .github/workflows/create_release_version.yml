@@ -15,7 +15,7 @@ jobs:
       
       - name: Release Note
         run: |
-          release_version="v1.0.5"
+          release_version="v1.0.6"
           echo "$release_version" > release-note.md
 
       - name: Create Release
@@ -33,5 +33,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          git config --global user.email "team-odm@valtech-mobility.com"
+          git config --global user.name "Team ODM"
           git commit -a -m "Update the release note for "$release_version""
           git push
