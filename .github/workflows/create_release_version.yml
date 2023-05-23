@@ -17,11 +17,12 @@ jobs:
         id: get_release_version
         run: |
           release_version="v1.0.12"
+          echo "::set-output name=my_output::$release_version"
           
       
       - name: Release Note
         run: |
-          echo "$release_version" > release-note.md
+          echo "${{ steps.get_release_version.my_output }}" > release-note.md
 
       - name: Create Release
         id: create_release
