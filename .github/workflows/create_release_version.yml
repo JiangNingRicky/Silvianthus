@@ -15,7 +15,7 @@ jobs:
       
       - name: Release Note
         run: |
-          echo "v1.0.2" > release-note.md
+          echo "v1.0.4" > release-note.md
 
       - name: Create Release
         id: create_release
@@ -23,12 +23,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.2
-          release_name: Release v1.0.2
+          tag_name: v1.0.4
+          release_name: Release v1.0.4
           body: |
             This is the release tag description.
           draft: false
           prerelease: false
 
-      - name: Get Release Tag
-        run: echo "The release tag is ${{ steps.create_release.outputs.tag }}"
+      - name: Commit changes
+        run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "your-email@example.com"
+          git commit -a -m "Modify file in GitHub Actions"
+          git push
