@@ -8,7 +8,7 @@ def get_latest_tag():
         .decode('utf-8')
         .strip("\n")
     )
-    print(f"tag list:{tag_list}")
+    print(f"----------------tag list:{tag_list}-----------------")
     return (
         subprocess.check_output(['git', 'describe', '--tags', f'{tag_list}'])
         .decode('utf-8')
