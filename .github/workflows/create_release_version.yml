@@ -21,14 +21,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
         
       - name: Get Release Version
         id: get_release_version
         run: |
           git config --global user.email "team-odm@valtech-mobility.com"
           git config --global user.name "Team ODM"
-          release_version=$(git version)
+          release_version=$(git rev-list --tags --max-count=1)
           echo $release_version                      
           echo "release_version=$release_version" >> $GITHUB_OUTPUT          
       
