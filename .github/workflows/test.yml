@@ -1,5 +1,4 @@
-name: Create Release Version
-
+name: Test
 on:
   workflow_dispatch:
     
@@ -15,5 +14,5 @@ jobs:
       - name: Get Release Version
         id: get_release_version
         run: |
-          git rev-list --tags --max-count=1
+          echo $(git rev-list --tags --max-count=1)
         
