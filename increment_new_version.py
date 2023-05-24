@@ -82,7 +82,7 @@ if __name__ == "__main__":
     if stage == "int":
         if based_on_version == "default":
             latest_tag = get_latest_tag()
-            print(f"{create_new_tag(latest_tag, based_on_version, release_type)}")
+            print(f"vvv{create_new_tag(latest_tag, based_on_version, release_type)}")
         else:
             if release_type in ("major", "minor"):
                 raise ValueError(
