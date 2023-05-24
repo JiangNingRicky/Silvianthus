@@ -26,6 +26,8 @@ jobs:
       - name: Get Release Version
         id: get_release_version
         run: |
+          git config --global user.email "team-odm@valtech-mobility.com"
+          git config --global user.name "Team ODM"
           release_version=$(git rev-list --tags --max-count=1)
           echo $release_version                      
           echo "release_version=$release_version" >> $GITHUB_OUTPUT          
@@ -49,7 +51,5 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.email "team-odm@valtech-mobility.com"
-          git config --global user.name "Team ODM"
           git commit -a -m "Update the release note for ${{ steps.get_release_version.outputs.release_version }}"
           git push
