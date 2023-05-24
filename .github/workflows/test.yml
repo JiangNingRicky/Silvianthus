@@ -1,0 +1,19 @@
+name: Create Release Version
+
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  create_release_version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  
+        
+      - name: Get Release Version
+        id: get_release_version
+        run: |
+          git rev-list --tags --max-count=1
+        
