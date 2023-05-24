@@ -8,6 +8,7 @@ def get_latest_tag():
         .decode('utf-8')
         .strip("\n")
     )
+    print(f"tag list:{tag_list}")
     return (
         subprocess.check_output(['git', 'describe', '--tags', f'{tag_list}'])
         .decode('utf-8')
@@ -69,7 +70,7 @@ def create_new_tag(current_version, is_latest_tag, mode):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Increment a new version for release.")
-    parser.add_argument("--stage", help="dev, int or prod", required=True)
+    parser.add_argument("--stage", help="int or prod", required=True)
     parser.add_argument("--based_on_version", help="tag", required=True)
     parser.add_argument("--release_type", help="major, minor or patch", required=False)
     args = parser.parse_args()
