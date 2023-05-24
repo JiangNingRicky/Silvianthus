@@ -35,7 +35,7 @@ jobs:
                                 --based_on_version ${{ inputs.based_on_version }} \
                                 --release_type ${{ inputs.release_type }})
           echo "----------$release_version----------------"                      
-          echo "release_version='$release_version'" >> $GITHUB_OUTPUT          
+          echo "release_version=\'$release_version\'" >> $GITHUB_OUTPUT          
       
       - name: Release Note
         run: |
