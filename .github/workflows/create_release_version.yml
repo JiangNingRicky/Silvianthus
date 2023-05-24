@@ -28,7 +28,7 @@ jobs:
         run: |
           git config --global user.email "team-odm@valtech-mobility.com"
           git config --global user.name "Team ODM"
-          release_version=$(git tag)
+          release_version="v1.0.15"
           echo $release_version                      
           echo "release_version=$release_version" >> $GITHUB_OUTPUT          
       
